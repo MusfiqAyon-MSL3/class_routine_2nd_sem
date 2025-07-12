@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Batch 251 – 2nd Semester Routine</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <div class="uob-header">
+      <img src="assets/logo.png" alt="UOB Logo" class="logo" />
+      <h1 class="uni-title">University of Brahmanbaria</h1>
+    </div>
+    <h2>📘 CSE Batch 251 – 2nd Semester Routine</h2>
+    <div class="actions">
+      <button id="print-btn" class="btn-primary">🖨️ Print</button>
+      <button id="open-info" class="btn-primary">🔗 Resources</button>
+      <button id="open-teachers" class="btn-primary">👨‍🏫 Teachers</button>
+      <button id="open-courses" class="btn-primary">📚 Courses</button>
+      <button id="open-developer" class="btn-primary">👤 Developer</button>
+      <a href="https://uob.pipilikasoft.com/Login?ReturnUrl=%2fStudent%2fProfile" target="_blank" class="btn-primary portal-btn">🎓 Stu. Portal</a>
+    </div>
+  </header>
+
+  <main>
+    <table id="routine" aria-label="Semester Routine Table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>9:00–10:30</th>
+          <th>10:30–12:00</th>
+          <th>12:00–1:30</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sunday</td>
+          <td data-course="ENG 0131-1294" data-time="9:00–10:30 AM">ENG 0131-1294 #Audi</td>
+          <td class="dark-cell">No Class</td>
+          <td data-course="HUM 0411-1295" data-time="12:00–1:30 PM">HUM 0411-1295 #302</td>
+        </tr>
+        <tr>
+          <td>Monday</td>
+          <td data-course="ENG 0131-1294" data-time="9:00–10:30 AM">ENG 0131-1294 #Audi</td>
+          <td data-course="EEE 0714-1279" data-time="10:30–12:00 PM">EEE 0714-1279 #EEE Lab</td>
+          <td data-course="MAT 0541-1284" data-time="12:00–1:30 PM">MAT 0541-1284 #Che Lab</td>
+        </tr>
+        <tr>
+          <td>Tuesday</td>
+          <td data-course="EEE 0714-1279" data-time="9:00–10:30 AM">EEE 0714-1279 #EEE Lab</td>
+          <td data-course="CSE 0611-1203" data-time="10:30–12:00 PM">CSE 0611-1203 #302</td>
+          <td data-course="CSE 0613-1206" data-time="12:00–1:30 PM">CSE 0613-1206 #CSE Lab</td>
+        </tr>
+        <tr>
+          <td>Wednesday</td>
+          <td data-course="EEE 0714-1279" data-time="9:00–10:30 AM">EEE 0714-1279 #EEE Lab</td>
+          <td data-course="CSE 0613-1205" data-time="10:30–12:00 PM">CSE 0613-1205 #CSE Lab</td>
+          <td data-course="MAT 0541-1284" data-time="12:00–1:30 PM">MAT 0541-1284 #404A</td>
+        </tr>
+        <tr>
+          <td>Thursday</td>
+          <td data-course="CSE 0611-1203" data-time="9:00–10:30 AM">CSE 0611-1203 #302</td>
+          <td data-course="CSE 0613-1205" data-time="10:30–12:00 PM">CSE 0613-1205 #306</td>
+          <td data-course="HUM 0411-1295" data-time="12:00–1:30 PM">HUM 0411-1295 #401</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </main>
+
+<!-- Routine Modal -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-content" id="routine-modal-content">
+    <h2 id="routine-modal-title"></h2>
+    <p id="routine-modal-time"></p>        <!-- New -->
+    <p id="routine-modal-room"></p>
+    <p id="routine-modal-teacher"></p>
+  </div>
+</div>
+
+
+  <!-- Teachers Modal -->
+  <div id="teachers-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h2>👨‍🏫 Teachers</h2>
+      <ul id="teacher-list"></ul>
+
+      <h3>Add / Edit Teacher</h3>
+      <form id="teacher-form">
+        <input type="hidden" id="edit-short-name" />
+
+        <input type="text" id="tname" placeholder="Full Name" required autocomplete="off" />
+        <input type="text" id="tsname" placeholder="Short Name (Unique)" required autocomplete="off" />
+        <input type="tel" id="tphone" placeholder="Phone Number" autocomplete="off" />
+        <input type="email" id="temail" placeholder="Email" autocomplete="off" />
+
+        <label for="tcourses" class="course-label">Choose Courses:</label>
+        <select id="tcourses" multiple size="6" required>
+          <option value="Discrete Mathematics">Discrete Mathematics</option>
+          <option value="Structured Programming Language">Structured Programming Language</option>
+          <option value="Structured Programming Language Sessional">Structured Programming Language Sessional</option>
+          <option value="Electronics Devices and Circuits">Electronics Devices and Circuits</option>
+          <option value="Electronics Devices and Circuits Sessional">Electronics Devices and Circuits Sessional</option>
+          <option value="Differential Equations and Coordinate Geometry">Differential Equations and Coordinate Geometry</option>
+          <option value="English Language Skills">English Language Skills</option>
+          <option value="Fundamental of Accounting">Fundamental of Accounting</option>
+        </select>
+
+        <div class="form-buttons">
+          <button type="submit" id="save-teacher-btn" class="btn-primary">Save</button>
+          <button type="button" id="cancel-edit-btn" class="btn-secondary hidden">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- Developer Modal -->
+  <div id="developer-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content dev-box">
+      <img src="assets/Musfiq_Ayon.jpg" alt="Musfiq Ayon" class="dev-photo" />
+      <h2>Musfiq Ayon</h2>
+      <p>Roll: 2510752</p>
+      <p>B.Sc in CSE | Batch 251</p>
+      <div class="dev-links">
+        <a href="https://www.facebook.com/musfiq.ayon.10/" target="_blank">Facebook</a>
+        <a href="https://www.instagram.com/ayon.musfiq/" target="_blank">Instagram</a>
+        <a href="https://wa.me/+8801701606009" target="_blank">WhatsApp</a>
+        <a href="mailto:musfiq.ayon.2022@gmail.com">Email</a>
+        <a href="tel:+8801701606009">Call</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources Modal -->
+  <div id="info-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h2>🔗 Resources</h2>
+
+      <form id="resource-form">
+        <select id="app-name" required>
+          <option value="">Select Social App</option>
+          <option value="Facebook">Facebook</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Website">Website</option>
+        </select>
+
+        <input type="text" id="resource-title" placeholder="Group / Page Name" required />
+        <input type="url" id="resource-link" placeholder="Paste the link here" required />
+
+        <div class="form-buttons">
+          <button type="submit" class="btn-primary">Submit</button>
+          <button type="reset" class="btn-secondary">Cancel</button>
+        </div>
+      </form>
+
+      <h3>📃 Saved Resources</h3>
+      <ul id="resource-list"></ul>
+    </div>
+  </div>
+  <!-- Courses Modal -->
+  <div id="courses-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h2>📚 Courses This Semester</h2>
+      <table id="course-table">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Credit</th>
+          </tr>
+        </thead>
+        <tbody id="course-list">
+          <tr>
+            <td>CSE 0611-1203</td>
+            <td>Discrete Mathematics</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>CSE 0613-1205</td>
+            <td>Structured Programming Language</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>CSE 0613-1206</td>
+            <td>Structured Programming Language Sessional</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>EEE 0714-1279</td>
+            <td>Electronics Devices and Circuits</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>EEE 0714-1280</td>
+            <td>Electronics Devices and Circuits Sessional</td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>MAT 0541-1284</td>
+            <td>Differential Equations and Coordinate Geometry</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>ENG 0231-1294</td>
+            <td>English Language Skills</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>HUM 0411-1295</td>
+            <td>Fundamental of Accounting</td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
